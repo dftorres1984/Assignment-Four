@@ -1,0 +1,104 @@
+---
+title: "Final Merge Assignment Four"
+format: html
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+library(readxl)
+library(tidyr)
+library(dplyr)
+library(readr)
+library(stringr) 
+```
+
+You can add options to executable code like this
+
+```{r}
+Final_Merged_Df <- rio::import("https://github.com/dftorres1984/Assignment_Three/raw/refs/heads/main/DataCleanAndFormatted/Final%20Merge.RDS")
+```
+
+```{r}
+str(Final_Merged_Df)
+head(Final_Merged_Df)
+
+#1 Aggregation of all countries' Total Scores from 2003 to 2020. It looks like it improves from 2003 until later in the 2010s when it falls in 2019 and 2020.  
+sumforTotalScore = aggregate(data=Final_Merged_Df, Total_Score~Year, sum)
+sumforTotalScore 
+
+#2 Aggregation --I created a new column with data range from 2003-2011 and 2012-2020 and then I aggregated scores of both Polyarchy and Total Score.  
+Final_Merged_Df <- Final_Merged_Df %>% mutate(Year_Range = case_when(
+                                              Year >= 2003 & Year <= 2011 ~ "2003-2011", Year>= 2012 & Year<= 2020 ~ "2012-2020"))
+
+Summary_Range_Country <- Final_Merged_Df |> group_by(Year_Range, Country) |> summarize (Sum_Polyarchy_Score = sum(Polyarchy_Score, na.rm = TRUE),                        Sum_Total_Score = sum(Total_Score, na.rm = TRUE)) |> arrange(Country)
+
+head(Summary_Range_Country)
+
+#I then decided to find the differences between given the Year_Range and Country. 
+Difference_Polyarchy <- Summary_Range_Country |> group_by(Country) |> summarize(Difference_Polyarchy = Sum_Polyarchy_Score [Year_Range == "2012-2020"] - Sum_Polyarchy_Score[Year_Range == "2003-2011"])
+
+head(Difference_Polyarchy)
+
+Difference_Total_Score <- Summary_Range_Country |> group_by(Country) |> summarize(Difference_Total_Score = Sum_Total_Score[Year_Range == "2012-2020"] - 
+Sum_Total_Score[Year_Range == "2003-2011"])
+
+head(Difference_Total_Score)
+
+#3 Aggregation--Group by "Country" & "Year_Range", Two Inputs (Total_Score_ & Polyarchy) and different functions (Mean vs Median scores). 
+
+Mean_vs_Median_Country <- Final_Merged_Df |> group_by(Country) |> summarize(Median_Total_Score = median(Total_Score, na.rm = TRUE), Mean_Polyarchy_Score = mean(Polyarchy_Score, na.rm = TRUE))
+
+Mean_vs_Median_Country_Year_Range <- Final_Merged_Df |> group_by(Country, Year_Range) |> summarize (Median_Total_Score = median(Total_Score, na.rm = TRUE), Mean_Polyarchy_Score = mean(Polyarchy_Score, na.rm = TRUE))
+
+
+#This is the that data for all of the countries in a single year.   
+Dem_Data_Year <- Final_Merged_Df |> group_by(Year) |>
+  summarize(Avg_Total_Score = mean(Total_Score, na.rm = TRUE), 
+            Avg_Polyarchy_Score = mean(Polyarchy_Score, na.rm = TRUE), 
+            Avg_Civil_Liberties_Score = mean(Civil_Liberties, na.rm = TRUE), 
+            Avg_Political_Rights_Score = mean(Political_Rights, na.rm = TRUE), 
+            Avg_Liberal_Democracy_Score = mean(Liberal_Dem_Score, na.rm = TRUE),
+            Median_Total_Score = median(Total_Score, na.rm = TRUE), 
+            Median_Polyarchy_Score = median(Polyarchy_Score, na.rm = TRUE), 
+            Median_Lib_Dem_Score = median(Liberal_Dem_Score, na.rm = TRUE), 
+            Median_Political_Rights_Score = median(Political_Rights, na.rm = TRUE), 
+            Median_Civil_Liberties_Score = median(Civil_Liberties, na.rm = TRUE),
+            Max_Range_TS = max(Total_Score, na.rm = TRUE), 
+            Min_Range_TS = min(Total_Score, na.rm = TRUE))
+
+head(Dem_Data_Year)
+
+#This is the data for all countries from the years that were measured (2003-2020). 
+Dem_Data_Country <- Final_Merged_Df |> group_by(Country) |> 
+    summarize(Avg_Total_Score = mean(Total_Score, na.rm = TRUE), 
+            Avg_Polyarchy_Score = mean(Polyarchy_Score, na.rm = TRUE), 
+            Avg_Civil_Liberties_Score = mean(Civil_Liberties, na.rm = TRUE), 
+            Avg_Political_Rights_Score = mean(Political_Rights, na.rm = TRUE), 
+            Avg_Liberal_Democracy_Score = mean(Liberal_Dem_Score, na.rm = TRUE),
+            Max_TS = max(Total_Score, na.rm = TRUE), 
+            Min_TS = min(Total_Score, na.rm = TRUE), 
+            Max_Polyarchy = max(Polyarchy_Score, na.rm = TRUE), 
+            Min_Polyarchy = min(Polyarchy_Score, na.rm = TRUE), 
+            Max_Lib_Dem_Score = max(Liberal_Dem_Score, na.rm = TRUE), 
+            Min_Lib_Dem_Score = min(Liberal_Dem_Score, na.rm = TRUE), 
+            Max_Civil_Lib_Score = max(Civil_Liberties, na.rm = TRUE), 
+            Min_Civil_Lib_Score = min(Civil_Liberties, na.rm = TRUE), 
+            Median_CV_score = median(Civil_Liberties, na.rm = TRUE), 
+            Median_PR_score = median(Political_Rights, na.rm = TRUE),
+            Median_TS_score = median(Total_Score, na.rm = TRUE), 
+            Median_Polyarhcy = median(Polyarchy_Score, na.rm = TRUE), 
+            Median_Lib_Dem = median(Liberal_Dem_Score, na.rm = TRUE))|> 
+  arrange(Avg_Total_Score)
+
+head(Dem_Data_Country)
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
