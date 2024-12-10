@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Final Merge Assignment Four</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Final Merge Assignment Four</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="quarto" class="level2">
+<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
+<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+</section>
+<section id="running-code" class="level2">
+<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
+<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr) </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'arrow' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'arrow'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:utils':
+
+    timestamp</code></pre>
+</div>
+</div>
+<p>You can add options to executable code like this</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Final_Merged_Df <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"https://github.com/dftorres1984/Assignment_Three/raw/refs/heads/main/DataCleanAndFormatted/Final%20Merge.RDS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Missing `trust` will be set to FALSE by default for RDS in 2.0.0.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Create folder </span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(Final_Merged_Df,<span class="fu">file.path</span>(folder, <span class="st">"Final Merged.RDS"</span>))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(Final_Merged_Df,<span class="fu">file.path</span>(folder, <span class="st">"Final Merged.RDS"</span>))}</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Final_Merged_Df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   648 obs. of  15 variables:
+ $ Country                : chr  "Australia" "Australia" "Australia" "Australia" ...
+ $ Year                   : num  2003 2004 2005 2006 2007 ...
+ $ Political_Rights       : int  39 39 39 39 39 39 39 39 39 39 ...
+ $ Civil_Liberties        : int  57 57 57 57 57 57 57 57 57 57 ...
+ $ Total_Score            : int  96 96 96 96 96 96 96 96 96 96 ...
+ $ Male_Suffrage          : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ Female_Suffrage        : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ Political_Liberties    : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ Democratic_Breakdown   : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ Sovereign              : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ Polyarchy_Score        : num  0.88 0.88 0.877 0.877 0.88 0.888 0.888 0.897 0.902 0.902 ...
+ $ Liberal_Dem_Score      : num  0.84 0.84 0.838 0.838 0.84 0.85 0.85 0.86 0.865 0.865 ...
+ $ Participation_Dem_Score: num  0.639 0.635 0.631 0.627 0.629 0.643 0.639 0.642 0.643 0.643 ...
+ $ Deliberative_Dem_Score : num  0.795 0.805 0.804 0.804 0.819 0.826 0.826 0.832 0.838 0.838 ...
+ $ Egalitarian_Dem_Score  : num  0.779 0.779 0.779 0.779 0.78 0.791 0.791 0.798 0.804 0.804 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Final_Merged_Df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Country Year Political_Rights Civil_Liberties Total_Score Male_Suffrage
+1 Australia 2003               39              57          96             1
+2 Australia 2004               39              57          96             1
+3 Australia 2005               39              57          96             1
+4 Australia 2006               39              57          96             1
+5 Australia 2007               39              57          96             1
+6 Australia 2008               39              57          96             1
+  Female_Suffrage Political_Liberties Democratic_Breakdown Sovereign
+1               1                   1                    0         1
+2               1                   1                    0         1
+3               1                   1                    0         1
+4               1                   1                    0         1
+5               1                   1                    0         1
+6               1                   1                    0         1
+  Polyarchy_Score Liberal_Dem_Score Participation_Dem_Score
+1           0.880             0.840                   0.639
+2           0.880             0.840                   0.635
+3           0.877             0.838                   0.631
+4           0.877             0.838                   0.627
+5           0.880             0.840                   0.629
+6           0.888             0.850                   0.643
+  Deliberative_Dem_Score Egalitarian_Dem_Score
+1                  0.795                 0.779
+2                  0.805                 0.779
+3                  0.804                 0.779
+4                  0.804                 0.779
+5                  0.819                 0.780
+6                  0.826                 0.791</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#1 Aggregation of all countries' Total Scores from 2003 to 2020. It looks like it improves from 2003 until later in the 2010s when it falls in 2019 and 2020.  </span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sumforTotalScore <span class="ot">=</span> <span class="fu">aggregate</span>(<span class="at">data=</span>Final_Merged_Df, Total_Score<span class="sc">~</span>Year, sum)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>sumforTotalScore </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Year Total_Score
+1  2003        3317
+2  2004        3354
+3  2005        3370
+4  2006        3376
+5  2007        3388
+6  2008        3383
+7  2009        3379
+8  2010        3372
+9  2011        3369
+10 2012        3366
+11 2013        3360
+12 2014        3358
+13 2015        3356
+14 2016        3348
+15 2017        3334
+16 2018        3316
+17 2019        3305
+18 2020        3305</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder) </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(sumforTotalScore, <span class="fu">file.path</span>(folder, <span class="st">"output111.RDS"</span>))</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(sumforTotalScore, <span class="fu">file.path</span>(folder, <span class="st">"output111.RDS"</span>))</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder) </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(sumforTotalScore, <span class="fu">file.path</span>(folder, <span class="st">"output111.csv"</span>))</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(sumforTotalScore, <span class="fu">file.path</span>(folder, <span class="st">"output111.csv"</span>))</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder) </span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_parquet</span>(sumforTotalScore, <span class="fu">file.path</span>(folder, <span class="st">"output111.parquet"</span>))</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_parquet</span>(sumforTotalScore, <span class="fu">file.path</span>(folder, <span class="st">"output111.parquet"</span>))</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co">#2 Aggregation --I created a new column with data range from 2003-2011 and 2012-2020 and then I aggregated scores of both Polyarchy and Total Score and then I subtracted the sums of the ranges (e.g. 2012-2020 - 2003-2011)  </span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>Final_Merged_Df <span class="ot">&lt;-</span> Final_Merged_Df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Year_Range =</span> <span class="fu">case_when</span>(</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>                                              Year <span class="sc">&gt;=</span> <span class="dv">2003</span> <span class="sc">&amp;</span> Year <span class="sc">&lt;=</span> <span class="dv">2011</span> <span class="sc">~</span> <span class="st">"2003-2011"</span>, Year<span class="sc">&gt;=</span> <span class="dv">2012</span> <span class="sc">&amp;</span> Year<span class="sc">&lt;=</span> <span class="dv">2020</span> <span class="sc">~</span> <span class="st">"2012-2020"</span>))</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>Summary_Range_Country <span class="ot">&lt;-</span> Final_Merged_Df <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Year_Range, Country) <span class="sc">|&gt;</span> <span class="fu">summarize</span> (<span class="at">Sum_Polyarchy_Score =</span> <span class="fu">sum</span>(Polyarchy_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),                        <span class="at">Sum_Total_Score =</span> <span class="fu">sum</span>(Total_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> <span class="fu">arrange</span>(Country)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Year_Range'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Summary_Range_Country)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+# Groups:   Year_Range [2]
+  Year_Range Country   Sum_Polyarchy_Score Sum_Total_Score
+  &lt;chr&gt;      &lt;chr&gt;                   &lt;dbl&gt;           &lt;int&gt;
+1 2003-2011  Australia                7.97             864
+2 2012-2020  Australia                7.75             876
+3 2003-2011  Austria                  7.82             881
+4 2012-2020  Austria                  7.77             855
+5 2003-2011  Belgium                  8.00             876
+6 2012-2020  Belgium                  8.10             867</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#I then decided to find the differences between given the Year_Range and Country for both Polyarchy and Total Score.  </span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>Difference_Polyarchy <span class="ot">&lt;-</span> Summary_Range_Country <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Country) <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">Difference_Polyarchy =</span> Sum_Polyarchy_Score [Year_Range <span class="sc">==</span> <span class="st">"2012-2020"</span>] <span class="sc">-</span> Sum_Polyarchy_Score[Year_Range <span class="sc">==</span> <span class="st">"2003-2011"</span>])</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Difference_Polyarchy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  Country   Difference_Polyarchy
+  &lt;chr&gt;                    &lt;dbl&gt;
+1 Australia              -0.223 
+2 Austria                -0.0440
+3 Belgium                 0.104 
+4 Bulgaria               -0.509 
+5 Canada                  0.0300
+6 Croatia                -0.0700</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Difference_Total_Score <span class="ot">&lt;-</span> Summary_Range_Country <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Country) <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">Difference_Total_Score =</span> Sum_Total_Score[Year_Range <span class="sc">==</span> <span class="st">"2012-2020"</span>] <span class="sc">-</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>Sum_Total_Score[Year_Range <span class="sc">==</span> <span class="st">"2003-2011"</span>])</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Difference_Total_Score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  Country   Difference_Total_Score
+  &lt;chr&gt;                      &lt;int&gt;
+1 Australia                     12
+2 Austria                      -26
+3 Belgium                       -9
+4 Bulgaria                     -43
+5 Canada                         3
+6 Croatia                       23</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#I merge the datasets into a single dataset to save </span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>Df_2 <span class="ot">&lt;-</span> <span class="fu">merge</span>(Summary_Range_Country, Difference_Polyarchy)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>Df_Final <span class="ot">&lt;-</span> <span class="fu">merge</span>(Df_2, Difference_Total_Score)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Df_Final)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Country Year_Range Sum_Polyarchy_Score Sum_Total_Score Difference_Polyarchy
+1 Australia  2003-2011               7.969             864               -0.223
+2 Australia  2012-2020               7.746             876               -0.223
+3   Austria  2003-2011               7.818             881               -0.044
+4   Austria  2012-2020               7.774             855               -0.044
+5   Belgium  2003-2011               8.001             876                0.104
+6   Belgium  2012-2020               8.105             867                0.104
+  Difference_Total_Score
+1                     12
+2                     12
+3                    -26
+4                    -26
+5                     -9
+6                     -9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder) </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(Df_Final, <span class="fu">file.path</span>(folder, <span class="st">"output221.RDS"</span>))</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(Df_Final, <span class="fu">file.path</span>(folder, <span class="st">"output221.RDS"</span>))</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder) </span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(Df_Final, <span class="fu">file.path</span>(folder, <span class="st">"output221.csv"</span>))</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(Df_Final, <span class="fu">file.path</span>(folder, <span class="st">"output221.csv"</span>))</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder) </span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_parquet</span>(Df_Final, <span class="fu">file.path</span>(folder, <span class="st">"output221.parquet"</span>))</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_parquet</span>(Df_Final, <span class="fu">file.path</span>(folder, <span class="st">"output221.parquet"</span>))</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="co">#3 Aggregation--Group by "Country" &amp; "Year_Range", Two Inputs (Total_Score_ &amp; Polyarchy) and different functions (Mean vs Median scores). </span></span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>Mean_vs_Median_Country <span class="ot">&lt;-</span> Final_Merged_Df <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Country) <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">Median_Total_Score =</span> <span class="fu">median</span>(Total_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Mean_Polyarchy_Score =</span> <span class="fu">mean</span>(Polyarchy_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Mean_vs_Median_Country)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  Country   Median_Total_Score Mean_Polyarchy_Score
+  &lt;chr&gt;                  &lt;dbl&gt;                &lt;dbl&gt;
+1 Australia               96                  0.873
+2 Austria                 97                  0.866
+3 Belgium                 97                  0.895
+4 Bulgaria                81.5                0.674
+5 Canada                  99                  0.833
+6 Croatia                 85.5                0.791</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder) </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(Mean_vs_Median_Country, <span class="fu">file.path</span>(folder, <span class="st">"output12f1f2.RDS"</span>))</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(Mean_vs_Median_Country, <span class="fu">file.path</span>(folder, <span class="st">"output12f1f2.RDS"</span>))</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder) </span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(Df_Final, <span class="fu">file.path</span>(folder, <span class="st">"output12f1f2.csv"</span>))</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(Df_Final, <span class="fu">file.path</span>(folder, <span class="st">"output12f1f2.csv"</span>))</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder) </span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_parquet</span>(sumforTotalScore, <span class="fu">file.path</span>(folder, <span class="st">"output12f1f2.parquet"</span>))</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_parquet</span>(sumforTotalScore, <span class="fu">file.path</span>(folder, <span class="st">"output12f1f2.parquet"</span>))</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a><span class="co">#I decided to repeat the same code but I wanted to group Country and Year_Range column that I previously mutated. </span></span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>Mean_vs_Median_Country_Year_Range <span class="ot">&lt;-</span> Final_Merged_Df <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Country, Year_Range) <span class="sc">|&gt;</span> <span class="fu">summarize</span> (<span class="at">Median_Total_Score =</span> <span class="fu">median</span>(Total_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">Mean_Polyarchy_Score =</span> <span class="fu">mean</span>(Polyarchy_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Country'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder) </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(Mean_vs_Median_Country_Year_Range, <span class="fu">file.path</span>(folder, <span class="st">"Additional1.RDS"</span>))</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(Mean_vs_Median_Country, <span class="fu">file.path</span>(folder, <span class="st">"Additional1.RDS"</span>))</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder) </span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(Df_Final, <span class="fu">file.path</span>(folder, <span class="st">"Additional1.csv"</span>))</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(Df_Final, <span class="fu">file.path</span>(folder, <span class="st">"Additional1.csv"</span>))</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder) </span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_parquet</span>(sumforTotalScore, <span class="fu">file.path</span>(folder, <span class="st">"Additional1.parquet"</span>))</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_parquet</span>(sumforTotalScore, <span class="fu">file.path</span>(folder, <span class="st">"Additional1.parquet"</span>))</span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a><span class="co">#Extra--This is the that statistical data for all of the countries in a single year.   </span></span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>Dem_Data_Year <span class="ot">&lt;-</span> Final_Merged_Df <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Year) <span class="sc">|&gt;</span></span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Avg_Total_Score =</span> <span class="fu">mean</span>(Total_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>            <span class="at">Avg_Polyarchy_Score =</span> <span class="fu">mean</span>(Polyarchy_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>            <span class="at">Avg_Civil_Liberties_Score =</span> <span class="fu">mean</span>(Civil_Liberties, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>            <span class="at">Avg_Political_Rights_Score =</span> <span class="fu">mean</span>(Political_Rights, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>            <span class="at">Avg_Liberal_Democracy_Score =</span> <span class="fu">mean</span>(Liberal_Dem_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a>            <span class="at">Median_Total_Score =</span> <span class="fu">median</span>(Total_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a>            <span class="at">Median_Polyarchy_Score =</span> <span class="fu">median</span>(Polyarchy_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a>            <span class="at">Median_Lib_Dem_Score =</span> <span class="fu">median</span>(Liberal_Dem_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a>            <span class="at">Median_Political_Rights_Score =</span> <span class="fu">median</span>(Political_Rights, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a>            <span class="at">Median_Civil_Liberties_Score =</span> <span class="fu">median</span>(Civil_Liberties, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a>            <span class="at">Max_Range_TS =</span> <span class="fu">max</span>(Total_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a>            <span class="at">Min_Range_TS =</span> <span class="fu">min</span>(Total_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder) </span>
+<span id="cb31-43"><a href="#cb31-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(Mean_vs_Median_Country_Year_Range, <span class="fu">file.path</span>(folder, <span class="st">"Additional2.RDS"</span>))</span>
+<span id="cb31-44"><a href="#cb31-44" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb31-45"><a href="#cb31-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(Mean_vs_Median_Country, <span class="fu">file.path</span>(folder, <span class="st">"Additional2.RDS"</span>))</span>
+<span id="cb31-46"><a href="#cb31-46" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb31-47"><a href="#cb31-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-48"><a href="#cb31-48" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb31-49"><a href="#cb31-49" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb31-50"><a href="#cb31-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder) </span>
+<span id="cb31-51"><a href="#cb31-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(Df_Final, <span class="fu">file.path</span>(folder, <span class="st">"Additional2.csv"</span>))</span>
+<span id="cb31-52"><a href="#cb31-52" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb31-53"><a href="#cb31-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(Df_Final, <span class="fu">file.path</span>(folder, <span class="st">"Additional2.csv"</span>))</span>
+<span id="cb31-54"><a href="#cb31-54" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb31-55"><a href="#cb31-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-56"><a href="#cb31-56" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb31-57"><a href="#cb31-57" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb31-58"><a href="#cb31-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder) </span>
+<span id="cb31-59"><a href="#cb31-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_parquet</span>(sumforTotalScore, <span class="fu">file.path</span>(folder, <span class="st">"Additional2.parquet"</span>))</span>
+<span id="cb31-60"><a href="#cb31-60" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb31-61"><a href="#cb31-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_parquet</span>(sumforTotalScore, <span class="fu">file.path</span>(folder, <span class="st">"Additional2.parquet"</span>))</span>
+<span id="cb31-62"><a href="#cb31-62" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb31-63"><a href="#cb31-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-64"><a href="#cb31-64" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Dem_Data_Year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 13
+   Year Avg_Total_Score Avg_Polyarchy_Score Avg_Civil_Liberties_Score
+  &lt;dbl&gt;           &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
+1  2003            92.1               0.851                      54.3
+2  2004            93.2               0.850                      55.2
+3  2005            93.6               0.851                      55.6
+4  2006            93.8               0.853                      55.7
+5  2007            94.1               0.856                      55.8
+6  2008            94.0               0.857                      55.8
+# ℹ 9 more variables: Avg_Political_Rights_Score &lt;dbl&gt;,
+#   Avg_Liberal_Democracy_Score &lt;dbl&gt;, Median_Total_Score &lt;dbl&gt;,
+#   Median_Polyarchy_Score &lt;dbl&gt;, Median_Lib_Dem_Score &lt;dbl&gt;,
+#   Median_Political_Rights_Score &lt;dbl&gt;, Median_Civil_Liberties_Score &lt;dbl&gt;,
+#   Max_Range_TS &lt;int&gt;, Min_Range_TS &lt;int&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This is the data for each countries from the years that were measured (2003-2020).</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>Dem_Data_Country <span class="ot">&lt;-</span> Final_Merged_Df <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Country) <span class="sc">|&gt;</span> </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">Avg_Total_Score =</span> <span class="fu">mean</span>(Total_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">Avg_Polyarchy_Score =</span> <span class="fu">mean</span>(Polyarchy_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">Avg_Civil_Liberties_Score =</span> <span class="fu">mean</span>(Civil_Liberties, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">Avg_Political_Rights_Score =</span> <span class="fu">mean</span>(Political_Rights, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">Avg_Liberal_Democracy_Score =</span> <span class="fu">mean</span>(Liberal_Dem_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">Max_TS =</span> <span class="fu">max</span>(Total_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">Min_TS =</span> <span class="fu">min</span>(Total_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">Max_Polyarchy =</span> <span class="fu">max</span>(Polyarchy_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">Min_Polyarchy =</span> <span class="fu">min</span>(Polyarchy_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">Max_Lib_Dem_Score =</span> <span class="fu">max</span>(Liberal_Dem_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">Min_Lib_Dem_Score =</span> <span class="fu">min</span>(Liberal_Dem_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">Max_Civil_Lib_Score =</span> <span class="fu">max</span>(Civil_Liberties, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">Min_Civil_Lib_Score =</span> <span class="fu">min</span>(Civil_Liberties, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">Median_CV_score =</span> <span class="fu">median</span>(Civil_Liberties, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">Median_PR_score =</span> <span class="fu">median</span>(Political_Rights, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">Median_TS_score =</span> <span class="fu">median</span>(Total_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">Median_Polyarhcy =</span> <span class="fu">median</span>(Polyarchy_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">Median_Lib_Dem =</span> <span class="fu">median</span>(Liberal_Dem_Score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))<span class="sc">|&gt;</span> </span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Avg_Total_Score)</span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Dem_Data_Country)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 19
+  Country     Avg_Total_Score Avg_Polyarchy_Score Avg_Civil_Liberties_Score
+  &lt;chr&gt;                 &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
+1 Romania                81.2               0.670                      48.1
+2 Bulgaria               82.3               0.674                      47.9
+3 South Korea            84.6               0.797                      49.9
+4 Croatia                84.7               0.791                      49.4
+5 Hungary                85.2               0.718                      50.9
+6 Greece                 85.7               0.886                      49.8
+# ℹ 15 more variables: Avg_Political_Rights_Score &lt;dbl&gt;,
+#   Avg_Liberal_Democracy_Score &lt;dbl&gt;, Max_TS &lt;int&gt;, Min_TS &lt;int&gt;,
+#   Max_Polyarchy &lt;dbl&gt;, Min_Polyarchy &lt;dbl&gt;, Max_Lib_Dem_Score &lt;dbl&gt;,
+#   Min_Lib_Dem_Score &lt;dbl&gt;, Max_Civil_Lib_Score &lt;int&gt;,
+#   Min_Civil_Lib_Score &lt;int&gt;, Median_CV_score &lt;dbl&gt;, Median_PR_score &lt;dbl&gt;,
+#   Median_TS_score &lt;dbl&gt;, Median_Polyarhcy &lt;dbl&gt;, Median_Lib_Dem &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder) </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(Mean_vs_Median_Country_Year_Range, <span class="fu">file.path</span>(folder, <span class="st">"Additional3.RDS"</span>))</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(Mean_vs_Median_Country, <span class="fu">file.path</span>(folder, <span class="st">"Additional3.RDS"</span>))</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder) </span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(Df_Final, <span class="fu">file.path</span>(folder, <span class="st">"Additional3.csv"</span>))</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(Df_Final, <span class="fu">file.path</span>(folder, <span class="st">"Additional3.csv"</span>))</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">"FinalOutput"</span></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(folder)) {</span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(folder) </span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_parquet</span>(sumforTotalScore, <span class="fu">file.path</span>(folder, <span class="st">"Additional3.parquet"</span>))</span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_parquet</span>(sumforTotalScore, <span class="fu">file.path</span>(folder, <span class="st">"Additional3.parquet"</span>))</span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

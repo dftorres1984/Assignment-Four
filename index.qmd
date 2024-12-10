@@ -18,6 +18,7 @@ library(tidyr)
 library(dplyr)
 library(readr)
 library(stringr) 
+library(arrow)
 ```
 
 You can add options to executable code like this
@@ -27,6 +28,15 @@ Final_Merged_Df <- rio::import("https://github.com/dftorres1984/Assignment_Three
 ```
 
 ```{r}
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  #Create folder 
+  dir.create(folder)
+  saveRDS(Final_Merged_Df,file.path(folder, "Final Merged.RDS"))
+} else {
+  saveRDS(Final_Merged_Df,file.path(folder, "Final Merged.RDS"))}
+
+
 str(Final_Merged_Df)
 head(Final_Merged_Df)
 
@@ -34,7 +44,32 @@ head(Final_Merged_Df)
 sumforTotalScore = aggregate(data=Final_Merged_Df, Total_Score~Year, sum)
 sumforTotalScore 
 
-#2 Aggregation --I created a new column with data range from 2003-2011 and 2012-2020 and then I aggregated scores of both Polyarchy and Total Score.  
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  dir.create(folder) 
+  saveRDS(sumforTotalScore, file.path(folder, "output111.RDS"))
+} else{
+  saveRDS(sumforTotalScore, file.path(folder, "output111.RDS"))
+}
+
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  dir.create(folder) 
+  write.csv(sumforTotalScore, file.path(folder, "output111.csv"))
+} else{
+  write.csv(sumforTotalScore, file.path(folder, "output111.csv"))
+}
+
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  dir.create(folder) 
+  write_parquet(sumforTotalScore, file.path(folder, "output111.parquet"))
+} else{
+  write_parquet(sumforTotalScore, file.path(folder, "output111.parquet"))
+}
+
+
+#2 Aggregation --I created a new column with data range from 2003-2011 and 2012-2020 and then I aggregated scores of both Polyarchy and Total Score and then I subtracted the sums of the ranges (e.g. 2012-2020 - 2003-2011)  
 Final_Merged_Df <- Final_Merged_Df %>% mutate(Year_Range = case_when(
                                               Year >= 2003 & Year <= 2011 ~ "2003-2011", Year>= 2012 & Year<= 2020 ~ "2012-2020"))
 
@@ -42,7 +77,7 @@ Summary_Range_Country <- Final_Merged_Df |> group_by(Year_Range, Country) |> sum
 
 head(Summary_Range_Country)
 
-#I then decided to find the differences between given the Year_Range and Country. 
+#I then decided to find the differences between given the Year_Range and Country for both Polyarchy and Total Score.  
 Difference_Polyarchy <- Summary_Range_Country |> group_by(Country) |> summarize(Difference_Polyarchy = Sum_Polyarchy_Score [Year_Range == "2012-2020"] - Sum_Polyarchy_Score[Year_Range == "2003-2011"])
 
 head(Difference_Polyarchy)
@@ -52,14 +87,94 @@ Sum_Total_Score[Year_Range == "2003-2011"])
 
 head(Difference_Total_Score)
 
+#I merge the datasets into a single dataset to save 
+Df_2 <- merge(Summary_Range_Country, Difference_Polyarchy)
+Df_Final <- merge(Df_2, Difference_Total_Score)
+
+head(Df_Final)
+
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  dir.create(folder) 
+  saveRDS(Df_Final, file.path(folder, "output221.RDS"))
+} else{
+  saveRDS(Df_Final, file.path(folder, "output221.RDS"))
+}
+
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  dir.create(folder) 
+  write.csv(Df_Final, file.path(folder, "output221.csv"))
+} else{
+  write.csv(Df_Final, file.path(folder, "output221.csv"))
+}
+
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  dir.create(folder) 
+  write_parquet(Df_Final, file.path(folder, "output221.parquet"))
+} else{
+  write_parquet(Df_Final, file.path(folder, "output221.parquet"))
+}
+
 #3 Aggregation--Group by "Country" & "Year_Range", Two Inputs (Total_Score_ & Polyarchy) and different functions (Mean vs Median scores). 
 
 Mean_vs_Median_Country <- Final_Merged_Df |> group_by(Country) |> summarize(Median_Total_Score = median(Total_Score, na.rm = TRUE), Mean_Polyarchy_Score = mean(Polyarchy_Score, na.rm = TRUE))
 
+head(Mean_vs_Median_Country)
+
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  dir.create(folder) 
+  saveRDS(Mean_vs_Median_Country, file.path(folder, "output12f1f2.RDS"))
+} else{
+  saveRDS(Mean_vs_Median_Country, file.path(folder, "output12f1f2.RDS"))
+}
+
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  dir.create(folder) 
+  write.csv(Df_Final, file.path(folder, "output12f1f2.csv"))
+} else{
+  write.csv(Df_Final, file.path(folder, "output12f1f2.csv"))
+}
+
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  dir.create(folder) 
+  write_parquet(sumforTotalScore, file.path(folder, "output12f1f2.parquet"))
+} else{
+  write_parquet(sumforTotalScore, file.path(folder, "output12f1f2.parquet"))
+}
+
+#I decided to repeat the same code but I wanted to group Country and Year_Range column that I previously mutated. 
 Mean_vs_Median_Country_Year_Range <- Final_Merged_Df |> group_by(Country, Year_Range) |> summarize (Median_Total_Score = median(Total_Score, na.rm = TRUE), Mean_Polyarchy_Score = mean(Polyarchy_Score, na.rm = TRUE))
 
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  dir.create(folder) 
+  saveRDS(Mean_vs_Median_Country_Year_Range, file.path(folder, "Additional1.RDS"))
+} else{
+  saveRDS(Mean_vs_Median_Country, file.path(folder, "Additional1.RDS"))
+}
 
-#This is the that data for all of the countries in a single year.   
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  dir.create(folder) 
+  write.csv(Df_Final, file.path(folder, "Additional1.csv"))
+} else{
+  write.csv(Df_Final, file.path(folder, "Additional1.csv"))
+}
+
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  dir.create(folder) 
+  write_parquet(sumforTotalScore, file.path(folder, "Additional1.parquet"))
+} else{
+  write_parquet(sumforTotalScore, file.path(folder, "Additional1.parquet"))
+}
+
+#Extra--This is the that statistical data for all of the countries in a single year.   
 Dem_Data_Year <- Final_Merged_Df |> group_by(Year) |>
   summarize(Avg_Total_Score = mean(Total_Score, na.rm = TRUE), 
             Avg_Polyarchy_Score = mean(Polyarchy_Score, na.rm = TRUE), 
@@ -74,9 +189,34 @@ Dem_Data_Year <- Final_Merged_Df |> group_by(Year) |>
             Max_Range_TS = max(Total_Score, na.rm = TRUE), 
             Min_Range_TS = min(Total_Score, na.rm = TRUE))
 
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  dir.create(folder) 
+  saveRDS(Mean_vs_Median_Country_Year_Range, file.path(folder, "Additional2.RDS"))
+} else{
+  saveRDS(Mean_vs_Median_Country, file.path(folder, "Additional2.RDS"))
+}
+
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  dir.create(folder) 
+  write.csv(Df_Final, file.path(folder, "Additional2.csv"))
+} else{
+  write.csv(Df_Final, file.path(folder, "Additional2.csv"))
+}
+
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  dir.create(folder) 
+  write_parquet(sumforTotalScore, file.path(folder, "Additional2.parquet"))
+} else{
+  write_parquet(sumforTotalScore, file.path(folder, "Additional2.parquet"))
+}
+
 head(Dem_Data_Year)
 
-#This is the data for all countries from the years that were measured (2003-2020). 
+#This is the data for each countries from the years that were measured (2003-2020).
+
 Dem_Data_Country <- Final_Merged_Df |> group_by(Country) |> 
     summarize(Avg_Total_Score = mean(Total_Score, na.rm = TRUE), 
             Avg_Polyarchy_Score = mean(Polyarchy_Score, na.rm = TRUE), 
@@ -99,6 +239,30 @@ Dem_Data_Country <- Final_Merged_Df |> group_by(Country) |>
   arrange(Avg_Total_Score)
 
 head(Dem_Data_Country)
+
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  dir.create(folder) 
+  saveRDS(Mean_vs_Median_Country_Year_Range, file.path(folder, "Additional3.RDS"))
+} else{
+  saveRDS(Mean_vs_Median_Country, file.path(folder, "Additional3.RDS"))
+}
+
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  dir.create(folder) 
+  write.csv(Df_Final, file.path(folder, "Additional3.csv"))
+} else{
+  write.csv(Df_Final, file.path(folder, "Additional3.csv"))
+}
+
+folder <- "FinalOutput"
+if(!dir.exists(folder)) {
+  dir.create(folder) 
+  write_parquet(sumforTotalScore, file.path(folder, "Additional3.parquet"))
+} else{
+  write_parquet(sumforTotalScore, file.path(folder, "Additional3.parquet"))
+}
 ```
 
 The `echo: false` option disables the printing of code (only output is displayed).
