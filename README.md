@@ -1,5 +1,5 @@
 # Assignment-Four
-You can learn more [here] https://dftorres1984.github.io/Assignment-Four/
+You can see my data [here](https://dftorres1984.github.io/Assignment-Four/)
 
 #I first import the final merged file. 
 
